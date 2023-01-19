@@ -4,6 +4,8 @@
  */
 package solucionparcial;
 
+import Vistas.VistaPrincipal;
+
 /**
  *
  * @author evalab
@@ -14,7 +16,7 @@ public class SolucionParcial {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        VistaPrincipal vista = new VistaPrincipal();
     }
     
 }
