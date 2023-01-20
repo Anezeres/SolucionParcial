@@ -16,7 +16,7 @@ public class PronosticoVentas {
     private double promedio;
     
 
-    public prueba2(double[] cantidadVentas) {
+    public PronosticoVentas(double[] cantidadVentas) {
         this.cantidadVentas = cantidadVentas;
         restas = new double[cantidadVentas.length];
         
