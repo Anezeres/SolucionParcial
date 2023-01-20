@@ -5,6 +5,8 @@
 package Vistas;
 
 import java.awt.event.MouseListener;
+import javax.swing.JButton;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,6 +17,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     
     DefaultTableModel modeloHistorico;
     DefaultTableModel modeloPronostico;
+    
+    
 
     /**
      * Creates new form VistaPrincipal
@@ -27,6 +31,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
         
         modeloHistorico = (DefaultTableModel) tablaHistorico.getModel();
         modeloPronostico = (DefaultTableModel) tablaPronostico.getModel();
+    }
+    
+    public void eliminarDatos(int index){
+        modeloHistorico.removeRow(index);
+    }
+    
+    public void eliminarDatosPronostico(int index){
+        modeloPronostico.removeRow(index);
     }
     
     
@@ -47,11 +59,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }
     
     
-    public float getDatosVentas(){
-        return Integer.parseInt(txtDatosVentas.getText());
+    public double getDatosVentas(){
+        return Double.parseDouble(txtDatosVentas.getText());
     }
     
-    public float getYearsPronosticar(){
+    public int getYearsPronosticar(){
         return Integer.parseInt(txtYearsPronosticar.getText());
     }
     
@@ -69,6 +81,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
     
     public void addTablaHistoricoListener(MouseListener listener){
         tablaHistorico.addMouseListener(listener);
+    }
+    
+    public void activarPronostico(){
+        txtYearsPronosticar.setEnabled(true);
     }
 
     /**
@@ -208,6 +224,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Años a Pronosticar:");
 
+        txtYearsPronosticar.setText("0");
+        txtYearsPronosticar.setEnabled(false);
+        txtYearsPronosticar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtYearsPronosticarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -263,11 +287,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         tablaHistorico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"X", "Y", "Yn - Yn-1", "(Yn - Yn-1)/Yn-1"},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"X", "Y", "Yn - Yn-1", "(Yn - Yn-1)/Yn-1"}
             },
             new String [] {
                 "Año", "Cantidad de Ventas", "", ""
@@ -346,6 +366,42 @@ public class VistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarYearActionPerformed
 
+    private void txtYearsPronosticarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtYearsPronosticarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtYearsPronosticarActionPerformed
+
+    public JButton getBtnAgregarYear() {
+        return btnAgregarYear;
+    }
+
+    public JButton getBtnBorrarYear() {
+        return btnBorrarYear;
+    }
+
+    public JButton getBtnNuevoPronostico() {
+        return btnNuevoPronostico;
+    }
+
+    public JButton getBtnModificarYear() {
+        return btnModificarYear;
+    }
+    
+    public void vaciarCantidadVentas(){
+        txtDatosVentas.setText("");
+    }
+    
+    public void setPromedio(double dato){
+        txtPromedioVentas.setText("" + dato);
+    }
+
+    public JTable getTablaHistorico() {
+        return tablaHistorico;
+    }
+    
+    
+
+    
+    
     /**
      * @param args the command line arguments
      */

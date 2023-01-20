@@ -4,6 +4,8 @@
  */
 package solucionparcial;
 
+import Controller.ControllerPrincipal;
+import Modelo.PronosticoVentas;
 import Vistas.VistaPrincipal;
 
 /**
@@ -17,6 +19,23 @@ public class SolucionParcial {
      */
     public static void main(String[] args) {
         VistaPrincipal vista = new VistaPrincipal();
+        PronosticoVentas modelo = new PronosticoVentas();
+        
+        ControllerPrincipal controller = new ControllerPrincipal(vista, modelo);
+        /*
+        prueba2 Prueba = new prueba2(cantidadVentas);
+       
+        Prueba.calcularResta();
+        Prueba.calcularPorcentaje();
+        Prueba.calcularPromedio();
+        Prueba.calcularPronostico(5);
+        
+        System.out.println(Prueba.getPromedio());
+        System.out.println(Arrays.toString(Prueba.getCantidadVentas()));
+        System.out.println(Arrays.toString(Prueba.getRestas()));
+        System.out.println(Arrays.toString(Prueba.getPorcentajeVariacion()));
+        System.out.println(Arrays.toString(Prueba.getPronosticoVentas()));
+        */
     }
     
 }
