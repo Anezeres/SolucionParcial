@@ -22,7 +22,7 @@ public class PronosticoVentas {
         cantidadVentas = new ArrayList<Double>();
         restas = new ArrayList<Double>();
         porcentajeVariacion = new ArrayList<Double>();
-    }
+
     
      public void calcularResta(){ 
          for(int i=0; i < cantidadVentas.size(); i++){
