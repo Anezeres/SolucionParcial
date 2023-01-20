@@ -4,41 +4,42 @@
  */
 package Modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author evalab
  */
 public class PronosticoVentas {
-    private double[] cantidadVentas; 
-    private double[] pronosticoVentas; 
-    private double[] porcentajeVariacion;
-    private double[] restas;
+    private ArrayList<Double> cantidadVentas; 
+    private ArrayList<Double> pronosticoVentas; 
+    private ArrayList<Double> porcentajeVariacion; 
+    private ArrayList<Double> restas; 
     private double promedio;
     
 
-    public PronosticoVentas(double[] cantidadVentas) {
-        this.cantidadVentas = cantidadVentas;
-        restas = new double[cantidadVentas.length];
-        
-        porcentajeVariacion = new double[cantidadVentas.length];
-    }
+    public PronosticoVentas() {
+        cantidadVentas = new ArrayList<Double>();
+        restas = new ArrayList<Double>();
+        porcentajeVariacion = new ArrayList<Double>();
+
     
      public void calcularResta(){ 
-         for(int i=0; i < cantidadVentas.length; i++){
+         for(int i=0; i < cantidadVentas.size(); i++){
         if (i == 0) {
-            restas[0] = 0;
+            restas.add(0.0);
         } else {
-        restas[i] = (cantidadVentas[i] - cantidadVentas[i-1]); 
+            restas.add(cantidadVentas.get(i) - cantidadVentas.get(i-1));
         }
       }
     }
      
      public void calcularPorcentaje() {
-         for(int i=0; i < cantidadVentas.length; i++){
+         for(int i=0; i < cantidadVentas.size(); i++){
         if (i == 0) {
-            porcentajeVariacion[0] = 0;
+            porcentajeVariacion.add(0.0);
         } else {
-        porcentajeVariacion[i] = (cantidadVentas[i] - cantidadVentas[i-1])/ cantidadVentas[i-1] ; 
+        porcentajeVariacion.add((cantidadVentas.get(i) - cantidadVentas.get(i-1))/cantidadVentas.get(i-1));
         
         }
       }
@@ -46,49 +47,45 @@ public class PronosticoVentas {
      
      public void calcularPromedio () {
          double suma = 0;
-         for(int i=0; i < porcentajeVariacion.length; i++) {
-             suma = suma + porcentajeVariacion[i];
+         for(int i=0; i < porcentajeVariacion.size(); i++) {
+             suma = suma + porcentajeVariacion.get(i);
          }
-         promedio = suma/(porcentajeVariacion.length - 1);
+         promedio = suma/(porcentajeVariacion.size() - 1);
      }
      
      public void calcularPronostico(int anios){
          calcularPromedio();
-         pronosticoVentas = new double[anios];
-         double ultimaVenta = cantidadVentas[cantidadVentas.length - 1];
+         pronosticoVentas = new ArrayList<Double>();
+         double ultimaVenta = cantidadVentas.get(cantidadVentas.size() - 1);
          for(int i = 0; i < anios; i++) {
              if (i == 0) {
-                pronosticoVentas[i] = (ultimaVenta*promedio)+ ultimaVenta;
+                 pronosticoVentas.add(ultimaVenta*promedio + ultimaVenta);
              } else {
-                 pronosticoVentas[i] = (pronosticoVentas[i-1]*promedio) + pronosticoVentas[i-1];
+                 pronosticoVentas.add(pronosticoVentas.get(i-1)*promedio + pronosticoVentas.get(i-1));
              }
              
          }
      }
 
-    public double[] getCantidadVentas() {
+    public ArrayList<Double> getCantidadVentas() {
         return cantidadVentas;
     }
 
-    public double[] getPronosticoVentas() {
-        return pronosticoVentas;
-    }
-
-    public double[] getPorcentajeVariacion() {
+    public ArrayList<Double> getPorcentajeVariacion() {
         return porcentajeVariacion;
     }
 
-    public double[] getRestas() {
+    public ArrayList<Double> getRestas() {
         return restas;
+    }
+
+    public ArrayList<Double> getPronosticoVentas() {
+        return pronosticoVentas;
     }
 
     public double getPromedio() {
         return promedio;
     }
 
-    public void setCantidadVentas(double[] cantidadVentas) {
-        this.cantidadVentas = cantidadVentas;
-    }
-     
      
 }
